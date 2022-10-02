@@ -1,0 +1,107 @@
+<block wx:if="{{isAdmin}}">
+	<cmpt-comm-list type="admin-meet" search="{{search}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="admin/user_list" sortMenusDefaultIndex="0" topBottom="50" placeholder="搜索" bind:list="bindCommListCmpt" sortMenusDefaultIndex="0">
+
+		<view slot="searchEnd">
+			<button bindtap="url" data-url="../export/admin_user_export?condition={{dataList.condition}}" class="btn mid radius bg-admin text-white margin-right-s"><text class="icon-down margin-right-xxs"></text>导出用户资料</button>
+		</view>
+
+		<!-- List Begin -->
+		<view class="admin-comm-list">
+			<view wx:if="{{dataList && dataList.total }}" class="load text-grey">共有{{dataList.total}}条符合条件记录 </view>
+
+			<view class="item" wx:for="{{dataList.list}}" wx:key="key">
+				<view class="header">
+					<view class="left text-cut">{{item.USER_NAME}}
+					</view>
+					<view class="right">
+						 
+					</view>
+				</view>
+
+				<view class="info">
+					<view class="info-item" bindtap="url" data-type="phone" data-url="{{item.USER_MOBILE}}">
+						<view class="title">手机</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_MOBILE||'未填写'}} <text wx:if="{{item.USER_MOBILE}}" class="icon-phone margin-left-s"></text></view>
+					</view> 
+
+					<view class="info-item">
+						<view class="title">生日</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_BRITH}}</view>
+					</view>
+					<view class="info-item">
+						<view class="title">积分余额</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_CANUSE_COUNT}}分</view>
+						<view class="modify" bindtap="bindOpenModel" data-info="{{item}}">修改</view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">个人简介</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_TRADE}}</view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">人员类型</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_TYPE == 1 ? "学员" : "教练"}}</view>
+					</view>
+
+					<view class="info-item" wx:if="{{item.USER_TYPE == 1 }}">
+						<view class="title">课程类型</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_CLASS_TYPE == 1 ? '基础' : item.USER_CLASS_TYPE == 2 ? '提高' : '竞技'}}</view>
+						<view class="modify" bindtap="bindOpenClassTypeModel" data-info="{{item}}">修改</view>
+					</view>
+
+					<view class="info-item" wx:if="{{item.USER_TYPE == 2 }}">
+						<view class="title">教学场地</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_PLACE_NAME}}</view>
+						<view class="modify" bindtap="bindOpenPlaceModel" data-info="{{item}}">修改</view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">注册时间</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_ADD_TIME}}</view>
+					</view>
+					<view class="oprt">
+
+						<view bindtap="bindDelTap" data-id="{{item.USER_MINI_OPENID}}" class="btn  margin-right-s"><text class="icon-delete margin-right-xxs text-orange"></text>删除</view>
+
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{skin:'text-grey',dataList}}" />
+		<!--load end-->
+
+
+	</cmpt-comm-list>
+
+		<cmpt-modal model:show="{{showModifykModal}}" type="longdialog" title="修改积分余额" bind:click="bindModifyCanUse" class="modal-check-info" slot-class="slot-class" cancelText="取消" confirmText="确认">
+			<view class="form-group">
+				<view class="title">积分余额</view>
+				<input placeholder="填写次数" type="number" bindinput="bindCanUseInput" placeholder-class="phc" model:value="{{modifyInfo.USER_CANUSE_COUNT}}" maxlength="100"></input>
+			</view>
+		</cmpt-modal> 
+		<cmpt-modal model:show="{{showModifyPlaceModal}}" type="longdialog" title="修改上课场地" bind:click="bindModifyPlaceType" class="modal-check-info" slot-class="slot-class" cancelText="取消" confirmText="确认">
+			<view class="form-group">
+				<view class="title must">选择场地</view>
+				<cmpt-picker id="cate-picker" sourceData="{{placeOptions}}" bind:select="selectPlaceType" data-type="picker" data-item="coachPlaceId" item="{{coachPlaceId}}"> </cmpt-picker>
+			</view>
+		</cmpt-modal> 
+		<cmpt-modal  type="bottom" model:show="{{showModifyClassTypeModal}}" type="longdialog" title="修改课程类型" bind:click="bindModifyClassType" class="modal-check-info" slot-class="slot-class" cancelText="取消" confirmText="确认">
+			<view class="form-group">
+				<view class="title must">选择课程类型</view>
+				<cmpt-picker id="cate-picker" sourceData="{{classTypes}}" bind:select="selectClassType" data-type="picker" data-item="classTypeId" item="{{classTypeId}}"> </cmpt-picker>
+			</view>
+		</cmpt-modal> 
+</block>

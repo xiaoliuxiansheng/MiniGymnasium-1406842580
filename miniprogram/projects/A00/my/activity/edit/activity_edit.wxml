@@ -1,0 +1,26 @@
+<!--projects/A00/my/activity/edit/activity_edit.wxml-->
+<view class="form-box shadow">
+	<view class="form-group arrow" wx:if="{{params.type == 1 && coachList.length}}">
+		<view class="title must">选择教练</view>
+		<cmpt-picker id="cate-picker" sourceData="{{coachList}}" bind:select="bindSelectCoach" data-type="picker" data-item="formCoachId" item="{{formCoachId}}"> </cmpt-picker>
+	</view>
+	<view wx:if="{{formCoachIdFocus}}" class="hint-desc error">{{formCoachIdFocus}}</view>
+	<view class="form-group arrow" wx:if="{{scoreList.length && params.type == 1}}">
+		<view class="title must">选择评分</view>
+		<cmpt-picker id="cate-picker" sourceData="{{scoreList}}" bind:select="bindSelectScore" data-type="picker" data-item="formScore" item="{{formScore}}"> </cmpt-picker>
+	</view>
+	<view wx:if="{{formScoreFocus}}" class="hint-desc error">{{formScoreFocus}}</view>
+
+	<view class="form-group">
+		<view class="action text-bold text-l must title">描述</view>
+		<view class="action">{{formContent.length}}/100</view>
+	</view>
+
+	<view class="form-group align-start">
+		<textarea name="content" placeholder-class="phc" placeholder="请输入描述" style="min-height:150rpx" model:value="{{formContent}}" maxlength="100" focus="{{formContentFocus}}" auto-height="true"></textarea>
+	</view>
+	<view wx:if="{{formContentFocus}}" class="hint-desc error">{{formContentFocus}}</view>
+
+</view>
+<button bindtap="bindFormSubmit" class="btn-admin margin-top-xs">提交</button>
+

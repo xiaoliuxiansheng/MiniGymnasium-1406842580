@@ -1,0 +1,8 @@
+@import '../../../../style/project/base/admin.wxss';
+
+page {
+	background-color: #f8f8f8;
+} 
+.modify {
+	color: #FFAE1F;
+}

@@ -1,0 +1,47 @@
+<!--pages/admin/activity/record/admin_activity_record.wxml-->
+<block wx:if="{{isAdmin}}">
+	<cmpt-comm-list type="admin-meet"  whereEx="{{search}}" isTotalMenu="{{false}}"  route="admin/activity_detail" sortMenusDefaultIndex="0" topBottom="50" bind:list="bindCommListCmpt" sortMenusDefaultIndex="0">
+
+		<!-- List Begin -->
+		<view class="admin-comm-list">
+			<view wx:if="{{dataList && dataList.total }}" class="load text-grey">共有{{dataList.total}}条符合条件记录 </view>
+
+			<view class="item" wx:for="{{dataList.list}}" wx:key="key">
+				<view class="header">
+					<view class="left text-cut">评论人：{{item.ACTIVITY_RECORD_USER_NAME}}
+					</view>
+					<view class="right">
+					</view>
+				</view>
+
+				<view class="info">
+					<view class="info-item" wx:if="{{item.ACTIVITY_RECORD_TYPE == 1}}">
+						<view class="title">评价教练</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_RECORD_COACH_NAME||'未填写'}}</view>
+					</view> 
+
+					<view class="info-item"  wx:if="{{item.ACTIVITY_RECORD_TYPE == 1}}">
+						<view class="title">评价分数</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_RECORD_SOCRE}}</view>
+					</view>
+					<view class="info-item">
+						<view class="title">描述</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_RECORD_CONTENT}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{skin:'text-grey',dataList}}" />
+		<!--load end-->
+
+
+	</cmpt-comm-list>
+
+</block>

@@ -1,0 +1,64 @@
+<block wx:if="{{isAdmin}}">
+	<cmpt-comm-list type="admin-meet" search="{{search}}" _menus="{{sortMenus}}" _items="{{sortItems}}" route="admin/activity_list" sortMenusDefaultIndex="0" topBottom="50" placeholder="搜索" bind:list="bindCommListCmpt" sortMenusDefaultIndex="0">
+
+		<view slot="searchEnd"> 
+			<button bindtap="url" data-url="../add/admin_activity_add" class="btn radius bg-admin text-white margin-right-s"><text class="icon-roundadd margin-right-xxs"></text>创建问卷</button>
+		</view>
+		<!-- List Begin -->
+		<view class="admin-comm-list">
+			<view wx:if="{{dataList && dataList.total }}" class="load text-grey">共有{{dataList.total}}条符合条件记录 </view>
+
+			<view class="item" wx:for="{{dataList.list}}" wx:key="key" bindtap="url" data-url="../record/admin_activity_record?id={{item._id}}">
+				<view class="header">
+					<view class="left text-cut">{{item.USER_NAME}}
+					</view>
+					<view class="right">
+						 
+					</view>
+				</view>
+
+				<view class="info">
+					<view class="info-item">
+						<view class="title">标题</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_TITLE||'未填写'}}</view>
+					</view> 
+
+					<view class="info-item">
+						<view class="title">描述</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_DESCRIBE}}</view>
+					</view>
+					<view class="info-item">
+						<view class="title">活动结束时间</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_END_TIME}}</view>
+					</view>
+					<view class="info-item">
+						<view class="title">参与次数</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_COMMENT_CNT}}</view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">创建时间</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_ADD_TIME}}</view>
+					</view>
+					<view class="oprt">
+						<view catchtap="bindDelete" data-id="{{item._id}}" class="btn  margin-right-s" style="color: red !important;"><text class="icon-detail margin-right-xxs " ></text>删除</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{skin:'text-grey',dataList}}" />
+		<!--load end-->
+
+
+	</cmpt-comm-list>
+
+</block>

@@ -1,0 +1,2 @@
+<import src="../../../../tpls/project/my_edit_tpl.wxml" />
+<template is="myEditTpl" data="{{isLoad,formName,formNameFocus,formMobile,formMobileFocus,formCity,formCityFocus,formWork,formWorkFocus,formTrade,formTradeFocus,formUserType, formUserTypeFocus,userTypes, handleUserType, placeOptions, bindImgUploadCmpt, formUserIcon, formUserIconFocus,formUserPlaceId, formUserBrith, formUserBrithFocus, bindDateChange, formUserCoachType, switch1Change, classTypes, formClassType, formClassTypeFocus}}" />

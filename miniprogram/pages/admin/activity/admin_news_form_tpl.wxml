@@ -1,0 +1,42 @@
+<template name="newsForm">
+	<view class="form-box shadow">
+		<view class="form-group">
+			<view class="title must">标题</view>
+		</view>
+
+		<view class="form-group">
+			<input placeholder="简短的标题" placeholder-class="phc" model:value="{{formTitle}}" focus="{{formTitleFocus}}" maxlength="50"></input>
+		</view>
+		<view wx:if="{{formTitleFocus}}" class="hint-desc error">{{formTitleFocus}}</view>
+
+		<view class="form-group arrow">
+			<view class="title must">分类</view>
+			<cmpt-picker id="cate-picker" sourceData="{{cateIdOptions}}" bind:select="bindSelectType" data-type="picker" data-item="formType" item="{{formType}}"> </cmpt-picker>
+		</view>
+		<view wx:if="{{formTypeFocus}}" class="hint-desc error">{{formTypeFocus}}</view>
+		<view class="form-group arrow">
+			<view class="title must">结束时间</view>
+				<picker mode="date" value="{{formEndTime}}" start="2022-09-01" end="2026-09-01" bindchange="bindDateChange">
+					<view class="picker">
+					当前选择: {{formEndTime}}
+					</view>
+			    </picker>
+		</view>
+		<view wx:if="{{formEndTimeFocus}}" class="hint-desc error">{{formEndTimeFocus}}</view>
+		<view class="form-group">
+			<view class="action text-bold text-l">简介</view>
+			<view class="action">{{formDesc.length}}/100</view>
+		</view>
+
+		<view class="form-group align-start">
+			<textarea name="content" placeholder-class="phc" placeholder="请输入本文简介" style="min-height:150rpx" model:value="{{formDesc}}" maxlength="100" focus="{{formDescFocus}}" auto-height="true"></textarea>
+		</view>
+		<view wx:if="{{formDescFocus}}" class="hint-desc error">{{formDescFocus}}</view>
+
+	</view>
+
+	<button bindtap="bindFormSubmit" class="btn-admin margin-top-xs">提交</button>
+
+
+
+</template>

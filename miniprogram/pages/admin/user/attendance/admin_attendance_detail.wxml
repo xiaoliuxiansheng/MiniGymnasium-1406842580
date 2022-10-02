@@ -1,0 +1,23 @@
+<view class="top_bar bar search fixed flex-direction"  wx:if="{{isAdmin}}">
+	<scroll-view scroll-left="0" scroll-x="true"  style="white-space: nowrap;">
+			<view  bindtap="bindSortTap"  wx:for="{{sortMenus}}" wx:key="key" class="list-scroll-view tab tab-menu {{sortMenusDefaultIndex == item.value ? 'text-check cur ' : ''}}  " data-value="{{item.value}}">{{item.label}}</view>
+	</scroll-view>
+</view>
+<view style="margin-top: 120rpx;">
+	<view class="attendance-item">
+		<text class="label">总课时</text>
+		<text class="value">{{attendanceInfo.total}}</text>
+	</view>
+	<view class="attendance-item">
+		<text class="label status-yes">已签到</text>
+		<text class="value">{{attendanceInfo.yes}}次</text>
+	</view>
+	<view class="attendance-item">
+		<text class="label status-no">未签到</text>
+		<text class="value" >{{attendanceInfo.no}}次</text>
+	</view>
+	<view class="attendance-item">
+		<text class="label status-await">待签到</text>
+		<text class="value">{{attendanceInfo.can + attendanceInfo.await}}次</text>
+	</view>
+</view>

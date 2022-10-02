@@ -1,0 +1,51 @@
+<block wx:if="{{isAdmin}}">
+	<view class="admin-comm-list" style="padding-bottom: 50rpx;">
+			<view wx:if="{{userList}}" class="load text-grey">共有{{userList.length}}条符合条件记录 </view>
+			<view class="item" wx:for="{{userList}}" wx:key="key">
+				<view class="header">
+					<view class="left text-cut">{{item.USER_NAME}}
+					</view>
+					<view class="right">
+						 
+					</view>
+				</view>
+
+				<view class="info">
+					<view class="info-item" bindtap="url" data-type="phone" data-url="{{item.USER_MOBILE}}">
+						<view class="title">手机</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_MOBILE||'未填写'}} <text wx:if="{{item.USER_MOBILE}}" class="icon-phone margin-left-s"></text></view>
+					</view> 
+
+					<view class="info-item">
+						<view class="title">生日</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_BRITH}}</view>
+					</view>
+					<view class="info-item">
+						<view class="title">积分余额</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_CANUSE_COUNT}}分</view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">个人简介</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_TRADE}}</view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">人员类型</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_TYPE === 1 ? "学员" : "教练"}}</view>
+					</view>
+
+					<view class="info-item">
+						<view class="title">注册时间</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.USER_ADD_TIME}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+</block>

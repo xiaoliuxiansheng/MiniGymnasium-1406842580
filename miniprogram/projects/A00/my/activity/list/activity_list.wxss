@@ -1,0 +1,129 @@
+page {
+	--adminColor: #2499f2;
+	--adminRedColor: #FF6666;
+}
+
+/** 通用列表 **/
+.admin-comm-list {
+	width: 100%;
+	padding: 0rpx 20rpx 0rpx;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.admin-comm-list .item {
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #fff;
+	border-radius: 5rpx;
+	overflow: hidden;
+	margin-bottom: 30rpx;
+	position: relative;
+	border: 1rpx solid #ccc;
+}
+
+.admin-comm-list .item:last-child {
+	margin-bottom: 0;
+}
+
+.admin-comm-list .item .header {
+	width: 100%;
+	font-size: 28rpx;
+	text-align: left;
+	line-height: 2.6;
+	padding: 0 15rpx;
+	display: flex;
+	background-color: #f2f2f2;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.admin-comm-list .item .header .left {
+	flex: 1;
+	font-size: 28rpx;
+	text-align: left;
+	line-height: 2.6;
+	padding: 0 5rpx;
+	text-align: left;
+	font-weight: bold;
+}
+
+.admin-comm-list .item .header .right {
+	min-width: 100rpx;
+	text-align: right;
+}
+
+.admin-comm-list .item .info {
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #fff;
+	min-height: 150rpx;
+	padding: 15rpx 20rpx 30rpx;
+	position: relative;
+}
+
+.admin-comm-list .item .info .info-item {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	background-color: #fff;
+	line-height: 1.5;
+	font-size: 25rpx;
+	margin-bottom: 20rpx;
+}
+
+.admin-comm-list .item .info .info-item .title {
+	width: 110rpx;
+	color: #333;
+	text-align: right;
+	font-weight: bold;
+}
+
+.admin-comm-list .item .info .info-item .mao {
+	color: #333;
+	text-align: left;
+	margin-right: 10rpx;
+}
+
+.admin-comm-list .item .info .info-item .content {
+	flex: 1;
+	color: #555;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.admin-comm-list .item .info .oprt {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	padding: 0rpx 0 0rpx;
+}
+
+.admin-comm-list .item .info .oprt .btn {
+	padding: 0 20rpx;
+	font-size: 26rpx;
+	border-radius: 8rpx !important;
+	line-height: unset;
+	height: 55rpx !important;
+	background-color: #eee !important;
+}
+
+.admin-comm-list .btn-more {
+	background-color: #fadbd9 !important;
+	color: #e54d42;
+}
+
+.item-disabled {
+	position: absolute;
+	right: 20rpx;
+	top: 20rpx;
+	color: #e54d42;
+}

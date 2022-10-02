@@ -1,0 +1,39 @@
+<!--projects/A00/my/activity/list/activity_list.wxml-->
+<block>
+	<view class="admin-comm-list" style="margin-top: 30rpx; padding-bottom: 100rpx;">
+			<view wx:if="{{dataList}}" class="load text-grey">共有{{dataList.length}}条符合条件记录 </view>
+
+			<view class="item" wx:for="{{dataList}}" wx:key="key">
+				<view class="info" bindtap="url" data-url="../edit/activity_edit?id={{item._id}}&type={{item.ACTIVITY_TYPE}}" data-activityId="{{item._id}}" data-info="{{item}}">
+					<view class="info-item" >
+						<view class="title">标题</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_TITLE||'未填写'}}</view>
+					</view> 
+
+					<view class="info-item">
+						<view class="title">描述</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_DESCRIBE}}</view>
+					</view>
+					<view class="info-item">
+						<view class="title">结束时间</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_END_TIME}}</view>
+					</view>
+					<!-- <view class="info-item">
+						<view class="title">参与次数</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_COMMENT_CNT}}</view>
+					</view> -->
+
+					<view class="info-item">
+						<view class="title">创建时间</view>
+						<view class="mao">：</view>
+						<view class="content">{{item.ACTIVITY_ADD_TIME}}</view>
+					</view>
+				</view>
+				<view class="item-disabled" wx:if="{{item.status === 2}}">已结束</view>
+			</view>
+		</view>
+</block>
